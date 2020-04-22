@@ -1,0 +1,12 @@
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+.hero-wrapper,
+.travel-info {
+  background-color: rgba(0, 0, 0, .42);
+}
+
+@import 'card';

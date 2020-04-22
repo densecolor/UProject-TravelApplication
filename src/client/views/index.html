@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Travel Memories</title>
+</head>
+<body>
+  <div id="app" class="app">
+    <header class="flex items-center w-full h-16 container mx-auto text-white">
+      <h1 class="text-3xl">
+        Travel Memories
+      </h1>
+    </header>
+    <main class="container mx-auto">
+      <!-- page hero -->
+      <div class="hero-wrapper p-20 mt-32 w-3/4 mx-auto rounded">
+        <h1 class="text-4xl text-white text-center font-semibold mb-4">
+          MANAGE YOUR EXPERIENCES
+        </h1>
+        <h3 class="text-xl text-white text-center mb-8">
+          Record the place you have been there
+        </h3>
+        <form class="w-full">
+          <div class="flex flex-wrap -mx-3 mb-2">
+            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-4">
+              <label class="block uppercase tracking-wide text-gray-200 text-xs font-bold mb-2" for="grid-city">
+                City
+              </label>
+              <input class="
+                appearance-none block w-full bg-gray-200 text-gray-700
+                border border-gray-200 rounded py-3 px-4 leading-tight
+                focus:outline-none focus:bg-white focus:border-gray-500"
+                id="grid-city"
+                type="text"
+                placeholder="Destination, City...">
+            </div>
+            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-4">
+              <label class="block uppercase tracking-wide text-gray-200 text-xs font-bold mb-2" for="grid-state">
+                Country
+              </label>
+              <div class="relative">
+                <select
+                  class="block appearance-none w-full bg-gray-200
+                  border border-gray-200 text-gray-700 py-3 px-4 pr-8rounded leading-tight
+                  focus:outline-none focus:bg-white focus:border-gray-500"
+                  id="grid-country">
+                </select>
+                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                  <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                </div>
+              </div>
+            </div>
+            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-4">
+              <label class="block uppercase tracking-wide text-gray-200 text-xs font-bold mb-2" for="grid-city">
+                Beign Date
+              </label>
+              <input class="
+                appearance-none block w-full bg-gray-200 text-gray-700
+                border border-gray-200 rounded py-3 px-4 leading-tight
+                focus:outline-none focus:bg-white focus:border-gray-500"
+                id="grid-begin-date"
+                type="text"
+                placeholder="YYYY-MM-DD">
+            </div>
+            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-4">
+              <label class="block uppercase tracking-wide text-gray-200 text-xs font-bold mb-2" for="grid-city">
+                End Date
+              </label>
+              <input class="
+                appearance-none block w-full bg-gray-200 text-gray-700
+                border border-gray-200 rounded py-3 px-4 leading-tight
+                focus:outline-none focus:bg-white focus:border-gray-500"
+                id="grid-end-date"
+                type="text"
+                placeholder="YYYY-MM-DD">
+            </div>
+            <div class="w-full px-3 my-6 my:mb-4 text-center">
+              <button
+                class="flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700
+                text-xl border-4 text-white py-1 px-2 rounded"
+                type="button"
+                onclick="Client.handleSubmit(event)"
+                onsubmit="Client.handleSubmit(event)">
+                Add Destination
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <!-- travel info area -->
+      <div class="travel-info p-8 mt-8 w-3/4 mx-auto rounded text-white">
+        <figure id="travel-card" class="travel-card-container hidden">
+          <div class="travel-card-content">
+            <div class="travel-card-content-box">
+              <div class="travel-card-title">
+                Travel Information
+              </div>
+            </div>
+            <div class="travel-card-content-box">
+              <div class="travel-card-description text-gray-300">
+                <p id="travel-timesago" class="text-sm"></p>
+              </div>
+            </div>
+            <div class="travel-card-content-box">
+              <div class="travel-card-metadata text-gray-300">
+                <p id="travel-weather" class="text-sm"></p>
+              </div>
+            </div>
+          </div>
+          <div class="travel-card-thumbnail">
+            <img id="travel-img" src="">
+          </div>
+        </figure>
+      </div>
+    </main>
+    <footer class="flex justify-center w-full h-12 text-white">
+      Copyright & Iris
+    </footer>
+  </div>
+
+  <script>
+    // Check that service workers are supported
+    if ('serviceWorker' in navigator) {
+      // Use the window load event to keep the page load performant
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js');
+      });
+    }
+  </script>
+</body>
+</html>
