@@ -3,23 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Travel Memories</title>
+  <title>Travel Planner</title>
 </head>
 <body>
   <div id="app" class="app">
-    <header class="flex items-center w-full h-16 container mx-auto text-white">
+    <header class="flex justify-center md:justify-start items-center w-full h-16 container mx-auto text-white">
       <h1 class="text-3xl">
-        Travel Memories
+        Travel Planner
       </h1>
     </header>
     <main class="container mx-auto">
       <!-- page hero -->
-      <div class="hero-wrapper p-20 mt-32 w-3/4 mx-auto rounded">
+      <div class="hero-wrapper mx-auto rounded px-4 py-8 mt-8
+        md:p-16 md:mt-24 md:w-3/4 ">
         <h1 class="text-4xl text-white text-center font-semibold mb-4">
-          MANAGE YOUR EXPERIENCES
+          BOOK YOUR EXPERIENCES
         </h1>
         <h3 class="text-xl text-white text-center mb-8">
-          Record the place you have been there
+          Explore top rated itineraries around the world
         </h3>
         <form class="w-full">
           <div class="flex flex-wrap -mx-3 mb-2">
@@ -89,7 +90,7 @@
         </form>
       </div>
       <!-- travel info area -->
-      <div class="travel-info p-8 mt-8 w-3/4 mx-auto rounded text-white">
+      <div class="travel-info px-4 py-8 m-8 md:w-3/4 mx-auto rounded text-white">
         <figure id="travel-card" class="travel-card-container hidden">
           <div class="travel-card-content">
             <div class="travel-card-content-box">
@@ -100,6 +101,7 @@
             <div class="travel-card-content-box">
               <div class="travel-card-description text-gray-300">
                 <p id="travel-timesago" class="text-sm"></p>
+                <p id="travel-duration" class="text-sm"></p>
               </div>
             </div>
             <div class="travel-card-content-box">

@@ -1,7 +1,9 @@
+import dayjs from 'dayjs'
 import HTTP from '../utils/http'
 import API from '../apiconfig'
 import getRelativeDate from '../utils/relativeDate'
-import dayjs from 'dayjs'
+
+let duration = 0
 
 const fetchCityPhoto = async () => {
   let photoes = {}
@@ -39,6 +41,7 @@ const handleSubmit = async (event) => {
   const countDownDays = getRelativeDate(formBeginDate)
   const startDate = dayjs(formBeginDate).format('YYYY-MM-DD')
   const endDate = dayjs(formEndDate).format('YYYY-MM-DD')
+  duration = dayjs(formEndDate).diff(dayjs(formBeginDate), 'day')
 
   // fetch geo info first
   const geoInfo = await HTTP.post(API.getGeoInfo, {
@@ -51,8 +54,7 @@ const handleSubmit = async (event) => {
   const weatherInfo = await HTTP.post(API.getWeatherInfo, {
     lat,
     lng,
-    startDate,
-    endDate,
+    days: countDownDays,
     postalCode
   })
 
@@ -87,7 +89,8 @@ const renderUI = (travelInfo) => {
   } = travelInfo
   document.getElementById('travel-card').classList.remove('hidden')
   document.getElementById('travel-card').classList.add('flex')
-  document.getElementById('travel-timesago').innerHTML = `You have beening ${destination} for ${countDownDays}`,
+  document.getElementById('travel-timesago').innerHTML = `Days until trip to ${destination}: ${countDownDays} days`,
+  document.getElementById('travel-duration').innerHTML = `Your trip duration is ${duration} days`,
   document.getElementById('travel-weather').innerHTML = `The Weather for then is: \n High - ${weatherInfo.max_temp} , Low - ${weatherInfo.min_temp}`
   document.getElementById('travel-img').src = photo.largeImageURL
 }

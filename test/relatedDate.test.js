@@ -1,12 +1,10 @@
 import dayjs from 'dayjs'
 import relativeDate from "../src/client/utils/relativeDate.js";
 
-it("in 7 days", () => {
+it("6 days left", () => {
   // mock date 7 days before now
-  const pastday = dayjs().subtract(7, 'day')
-  const res = relativeDate(pastday)
+  const futureday = dayjs().add(7, 'day').format('YYYY-MM-DD')
+  const res = relativeDate(futureday)
   // assert
-  expect(res).toEqual(
-    'in 7 days'
-  )
+  expect(res).toEqual(6)
 })

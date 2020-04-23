@@ -24,3 +24,6 @@ npm run test
 ## License
 
 MIT
+
+## Extend to Stand Out sections
+Add end date and display length of trip.

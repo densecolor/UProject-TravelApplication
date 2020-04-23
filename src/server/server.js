@@ -4,7 +4,6 @@ const dotenv = require('dotenv')
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const axios = require('axios')
-
 const HTTP = require('./http')
 const API = require('./apiconfig')
 const countries = require('./countries')
@@ -37,7 +36,7 @@ function listening() {
 }
 
 // Get Route
-app.get('/api/country/info', async function (req, res) {
+app.get('/api/country/info', function (req, res) {
   res.send(countries)
 })
 
@@ -77,12 +76,11 @@ async function getGeoInfo({ destination = 'paris', countryCode = 'FR' }) {
  * Fetch weather info use geo info
  * @param {*} param
  */
-async function getWeatherInfo({ lat, lng, startDate, endDate, postalCode }) {
+async function getWeatherInfo({ lat, lng, days, postalCode }) {
   const params = {
     lat,
     lon: lng,
-    start_date: startDate,
-    end_date: endDate,
+    days,
     key: process.env.WEATHERBIT_KEY
   }
   let res = {}
@@ -114,3 +112,5 @@ async function getImageInfo({ city }) {
   
   return imageInfo
 }
+
+module.exports = app
