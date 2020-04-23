@@ -1,6 +1,7 @@
 import HTTP from '../utils/http'
 import API from '../apiconfig'
-import getRelativeDate from '../utils/relatvieDate'
+import getRelativeDate from '../utils/relativeDate'
+import dayjs from 'dayjs'
 
 const fetchCityPhoto = async () => {
   let photoes = {}
