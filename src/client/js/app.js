@@ -43,20 +43,27 @@ const handleSubmit = async (event) => {
   const endDate = dayjs(formEndDate).format('YYYY-MM-DD')
   duration = dayjs(formEndDate).diff(dayjs(formBeginDate), 'day')
 
+  let cordInfo = {}
   // fetch geo info first
-  const geoInfo = await HTTP.post(API.getGeoInfo, {
-    destination: formDestination,
-    countryCode: formCountry
-  })
-  const { lat, lng, postalCode } = geoInfo[0]
+  try {
+    const geoInfo = await HTTP.post(API.getGeoInfo, {
+      destination: formDestination,
+      countryCode: formCountry
+    })
 
+    cordInfo = geoInfo && geoInfo[0]
+  } catch (error) {
+    console.log("Check if the city matches the country")
+  }
+  console.log(cordInfo)
+  let weatherInfo = {}
   // fetch weather info use geo info { lat, lng, startDate, endDate, postalCode }
-  const weatherInfo = await HTTP.post(API.getWeatherInfo, {
-    lat,
-    lng,
-    days: countDownDays,
-    postalCode
-  })
+    weatherInfo = await HTTP.post(API.getWeatherInfo, {
+      lat: cordInfo.lat,
+      lng: cordInfo.lng,
+      days: countDownDays,
+      postalCode: cordInfo.postalCode
+    })
 
   console.log(weatherInfo)
 
@@ -90,8 +97,8 @@ const renderUI = (travelInfo) => {
   document.getElementById('travel-card').classList.remove('hidden')
   document.getElementById('travel-card').classList.add('flex')
   document.getElementById('travel-timesago').innerHTML = `Days until trip to ${destination}: ${countDownDays} days`,
-  document.getElementById('travel-duration').innerHTML = `Your trip duration is ${duration} days`,
-  document.getElementById('travel-weather').innerHTML = `The Weather for then is: \n High - ${weatherInfo.max_temp} , Low - ${weatherInfo.min_temp}`
+    document.getElementById('travel-duration').innerHTML = `Your trip duration is ${duration} days`,
+    document.getElementById('travel-weather').innerHTML = `The Weather for then is: \n High - ${weatherInfo.max_temp} , Low - ${weatherInfo.min_temp}`
   document.getElementById('travel-img').src = photo.largeImageURL
 }
 
