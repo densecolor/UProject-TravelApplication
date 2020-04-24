@@ -9,15 +9,6 @@ module.exports = {
     libraryTarget: 'var',
     library: 'Client'
   }, 
-  devServer: {
-    clientLogLevel: 'none',
-    proxy: {
-      // the proxy allows the client and server to talk to each other
-      // allows webapck to proxy our actual dev server
-      '/': 'http://localhost:3000'
-      // this is my local server port
-    }
-  },
   module: {
     rules: [
       {
@@ -28,9 +19,9 @@ module.exports = {
       {
         test: /\.scss$/,
         use: [
-          'style-loader', // 将 JS 字符串生成为 style 节点
-          'css-loader', // 将 CSS 转化成 CommonJS 模块
-          'sass-loader', // 将 Sass 编译成 CSS，默认使用 Node Sass
+          'style-loader',
+          'css-loader',
+          'sass-loader',
         ],
       },
     ],
